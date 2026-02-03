@@ -51,6 +51,9 @@ jobs:
     build-test:
         needs: test
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pull-requests: write
         strategy:
             matrix:
                 platform: [amd64, arm64]
@@ -67,14 +70,19 @@ jobs:
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v3
 
-            - name: Create GH token file
-              run: echo "${{ secrets.GH_ACCESS_TOKEN }}" > gh_token.txt
-
             - name: Docker Build
               uses: docker/build-push-action@v6
               with:
                   platforms: ${{ matrix.docker-platform }}
                   context: .
+                  load: true
                   push: false
-                  secret-files: |
-                      "gh_token=gh_token.txt"
+                  tags: opentelemetry-mcp-server:${{ github.sha }}-${{ matrix.platform }}
+            - name: Trivy Scan
+              uses: traceloop/.github/actions/ci-action-trivy@main
+              with:
+                image_ref: opentelemetry-mcp-server:${{ github.sha }}-${{ matrix.platform }}
+                image_name: opentelemetry-mcp-server-${{ matrix.platform }}
+                scanners: secret,vuln
+                severity: CRITICAL,HIGH
+                github_token: ${{ secrets.GITHUB_TOKEN }}
