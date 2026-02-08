@@ -1,3 +1,9 @@
+## v0.2.2 (2026-02-08)
+
+### Fix
+
+- **ci**: add GH_TOKEN for release creation (#24)
+
 ## v0.2.1 (2026-02-08)
 
 ### Fix
