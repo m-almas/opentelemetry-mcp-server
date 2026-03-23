@@ -116,24 +116,24 @@ class LegacyLLM:
 
     # System and model
     VENDOR = "llm.vendor"
-    REQUEST_MODEL = SpanAttributes.LLM_REQUEST_MODEL
+    REQUEST_MODEL = "llm.request.model"
     RESPONSE_MODEL = "llm.response.model"
 
     # Request
-    REQUEST_TYPE = SpanAttributes.LLM_REQUEST_TYPE
-    IS_STREAMING = SpanAttributes.LLM_IS_STREAMING
+    REQUEST_TYPE = "llm.request.type"
+    IS_STREAMING = "llm.is_streaming"
     TEMPERATURE = "llm.temperature"
-    TOP_P = SpanAttributes.LLM_TOP_K
+    TOP_P = "llm.top_k"
     MAX_TOKENS = "llm.max_tokens"
-    FREQUENCY_PENALTY = SpanAttributes.LLM_FREQUENCY_PENALTY
-    PRESENCE_PENALTY = SpanAttributes.LLM_PRESENCE_PENALTY
+    FREQUENCY_PENALTY = "llm.frequency_penalty"
+    PRESENCE_PENALTY = "llm.presence_penalty"
 
     # Response
-    RESPONSE_FINISH_REASON = SpanAttributes.LLM_RESPONSE_FINISH_REASON
+    RESPONSE_FINISH_REASON = "llm.response.finish_reason"
     RESPONSE_FINISH_REASONS = "llm.response.finish_reasons"
 
     # Usage/tokens
-    USAGE_TOTAL_TOKENS = SpanAttributes.LLM_USAGE_TOTAL_TOKENS
+    USAGE_TOTAL_TOKENS = "llm.usage.total_tokens"
     USAGE_PROMPT_TOKENS = "llm.usage.prompt_tokens"
     USAGE_INPUT_TOKENS = "llm.usage.input_tokens"
     USAGE_COMPLETION_TOKENS = "llm.usage.completion_tokens"
